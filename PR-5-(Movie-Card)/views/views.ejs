@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>view Movie</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+  <style>
+    body {
+      /* background: #0f172a; */
+      background: linear-gradient(135deg, #0d253f, #01b4e4);
+      color: #e2e8f0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    .card {
+      border: none;
+      /* background: #1e293b; */
+      background: #1c1c1c;
+      color: #e2e8f0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .card img {
+      height: 200px;
+      width: 100%;
+      /* object-fit: cover; */
+      object-fit: contain;
+      border-bottom: 4px solid #3b82f6;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+    }
+
+    .btn-danger {
+      background-color: #ef4444;
+      border: none;
+    }
+
+    .btn-danger:hover {
+      background-color: #dc2626;
+    }
+
+    .btn-warning {
+      background-color: #f59e0b;
+      border: none;
+      color: #1e293b;
+    }
+
+    .btn-warning:hover {
+      background-color: #d97706;
+    }
+
+    .card-footer {
+      background: #0f172a;
+      border-top: 1px solid #334155;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      <% users.map((val, i) => { %>
+      <div class="col">
+        <div class="card">
+          <img src="<%= val.image %>" class="card-img-top" alt="<%= val.name %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= val.name %></h5>
+            <p class="card-text"><strong>Price:</strong> $<%= val.price %></p>
+            <p class="card-text"><%= val.desc %></p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <a class="btn btn-danger" href="/delete?id=<%= val.id %>"><i class="fas fa-trash-alt"></i> Delete</a>
+            <a class="btn btn-warning" href="/edit?id=<%= val.id %>"><i class="fas fa-edit"></i> Edit</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
