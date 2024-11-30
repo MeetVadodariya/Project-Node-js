@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BizBlog - Add Your Post</title>
+    <meta name="description" content="A modern platform to share your ideas and technologies.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/frontend/img/favicon.png" type="image/x-icon">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="assets/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/frontend/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/frontend/css/style.css">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+        }
+
+        header .navbar {
+            padding: 15px 20px;
+        }
+
+        header .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        header .navbar-nav .nav-link {
+            color: #fff;
+            margin: 0 10px;
+        }
+
+        .slider-area {
+            background: url('assets/frontend/img/hero/blog-tech.jpg') no-repeat center center/cover;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider-area h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+        }
+
+        .form-section {
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+        }
+        
+        .request-back-area {
+            background: #a6d7eb;
+        }
+        .form-section h3 {
+            color: #1e3d59;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-box input,
+        .form-box textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .form-box input:focus,
+        .form-box textarea:focus {
+            border-color: #1e3d59;
+            outline: none;
+        }
+
+        .send-btn {
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .send-btn:hover {
+            background-color: #163246;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        footer a {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Start -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="index.html">BizBlog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/viewblog">View Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/addblogpage">Add Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Header End -->
+    <!-- Slider Area Start -->
+    <div class="slider-area">
+        <div class="container text-center">
+            <h2>Our Blog</h2>
+        </div>
+    </div>
+    <!-- Slider Area End -->
+
+    <!-- Blog Form Section Start -->
+    <div class="request-back-area">
+        <div class="container">
+            <div class="row">
+                <!-- Blog Categories -->
+                <div class="col-lg-4">
+                    <div class="request-content">
+                        <h3>Add Our Blog</h3>
+                        <h4>JavaScript</h4>
+                        <h4>Node.js</h4>
+                        <h4>React.js</h4>
+                    </div>
+                </div>
+                <!-- Form Section -->
+                <div class="col-lg-8">
+                    <form action="/up" method="POST" enctype="multipart/form-data">
+                        <div class="form-box">
+                            <input type="hidden" name="editid" value="<%= single.id %>">
+                            <input type="text" name="title" value="<%= single.title %>" placeholder="Blog Title">
+                            <textarea name="desc" placeholder="Blog Description"><%= single.desc %></textarea>
+                            <input type="file" name="image">
+                            <img src="<%= single.image %>" class="img-fluid mt-2" alt="Blog Image" style="max-width: 300px;">
+                            <button type="submit" class="send-btn mt-3">Add Blog</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog Form Section End -->
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 BizBlog | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/frontend/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/frontend/js/bootstrap.min.js"></script>
+    <script src="./assets/frontend/js/main.js"></script>
+
+</body>
+
+</html>
+
