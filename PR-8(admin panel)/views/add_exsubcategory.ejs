@@ -1,0 +1,136 @@
+<%- include('header') %>
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Form Basic</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Library
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <% if(locals.message.success ) { %>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <%= locals.message.success %>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                            <% } %>
+
+                                <form action="/exsubcategory/insertexsubcategory" method="post" class="form-horizontal">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Exsubcategory</h4>
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-end control-label col-form-label">Category Name</label>
+                                            <div class="col-sm-9">
+                                                <select name="category" id="category" onchange="categoryRecord()" class="form-control">
+                                                    <option value="">--- select category ---</option>
+                                                    <% category.map((c) => { %>
+                                                          <option value="<%= c.id %>"><%= c.category_name %></option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-end control-label col-form-label">Subcategory Name</label>
+                                            <div class="col-sm-9">
+                                                <select id="subcategory" name="subcategory" class="form-control">
+                                                    <option value="">--- select Subcategory ---</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    <div class="form-group row">
+                                        <label for="fname"
+                                            class="col-sm-3 text-end control-label col-form-label">Exsubcategory Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="exsubcategory" class="form-control" id="fname"
+                                                placeholder="Exsubcategory Name Here" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-primary">
+                                                Submit
+                                            </button>
+                                                                                </div>
+                                    </div>
+                                </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center">
+            All Rights Reserved by Matrix-admin. Designed and Developed by
+            <a href="https://www.wrappixel.com">WrapPixel</a>.
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        const categoryRecord = () => {
+            let catId = document.getElementById("category").value;
+
+            $.ajax({
+                type : 'GET',
+                url : `/exsubcategory/ajaxGetCategory?id=${catId}`,
+                success : function(res){
+                    let category = res.category
+                    let tbl = "";
+                    tbl += ` <option value="">---select subcategory---</option>`;
+                    category.map((subcat) => {
+                        tbl += `
+                       <option value="${subcat._id}">${subcat.subcategory}</option>                        `
+                    })
+                    document.getElementById("subcategory").innerHTML = tbl ;
+                }
+            })
+        }
+
+    </script>
+
+    <%- include('footer') %>
