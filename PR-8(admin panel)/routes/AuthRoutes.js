@@ -2,7 +2,7 @@ const express = require('express');
 
 const routes = express.Router();
 
-const {  registerPage, 
+const {   registerPage, 
     registerUser , 
     loginUser , 
     loginPage, 
